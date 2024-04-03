@@ -10,13 +10,17 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+                String respuesta = " ";
+
+                                        try{
+
 Scanner s = new Scanner(System.in);
         boolean salir = false;
         int operador1 =0;
         int operador2 =0;
-        String respuesta = "";
         
         do{
+
             System.out.println("----------------------------------");
                        System.out.println("1.Introduce operadores\n2.Suma\n3.Resta\n4.Multiplicación\n5.División\n6.Salir");
                        int option = s.nextInt();
@@ -26,63 +30,51 @@ Scanner s = new Scanner(System.in);
                 case 1:
 
                     
-                    try{
                    
                     System.out.println("Introduce número 1:");
                     operador1=s.nextInt();
                     System.out.println("Introduce número 2:");
                     operador2=s.nextInt();
-                    }catch (InputMismatchException ex) {
-            System.out.println("Debe ingresar obligatoriamente un número entero.");
-        }
+                   
                     break;
                 case 2:
-                    try{
                     int suma = operador1+operador2;
                     respuesta= String.valueOf(suma);
                     suma(operador1,operador2);
-                    }catch(ExcepcionSuma ex){
-                        respuesta=ex.getMessage();
-                    }
-                    System.out.println("Resultado: "+respuesta);
+                                        System.out.println("Resultado: "+respuesta);
+
+                   
                     break;
                 case 3:
-                    try{
                          int resta= operador1-operador2;
                     resta(operador1,operador2);
                     respuesta=String.valueOf(resta);
+                     System.out.println("Resultado: "+respuesta);
+
                     
-                    }catch(ExcepcionResta ex){
-                        respuesta=ex.getMessage();
-                    }
-                    System.out.println("Resultado: "+respuesta);
+                    
                     
                     break;
                 case 4:
 
-                    try{
                     int multiplicacion = operador1*operador2;
                     respuesta=String.valueOf(multiplicacion);
                         multiplicacion(operador2);
-                    }catch(ExcepcionMultiplicacion ex){
-                        respuesta=ex.getMessage();
-                    }
-                    System.out.println("Respuesta: "+respuesta);
+                                            System.out.println("Respuesta: "+respuesta);
+
+                    
                     break;
                 case 5:
-                    try{
+                  
                          int division = operador1/operador2;
                          respuesta=String.valueOf(division);
+                                                                     System.out.println("Respuesta: "+respuesta);
+
 
         
                          division(operador2);
 
-                    }catch(ArithmeticException e){
-                        System.out.println("No se puede dividir entre cero");
-                    }catch(ExceptionDivision ex){
-                        respuesta=ex.getMessage();
-                    }
-                  System.out.println(respuesta);
+               
                     break;
                 case 6:
                     salir = true;
@@ -92,7 +84,27 @@ Scanner s = new Scanner(System.in);
             }
             
         }while(!salir);
-        
+             }catch(ArithmeticException e){
+                        System.out.println("No se puede dividir entre cero");
+                    }catch(ExceptionDivision ex){
+                        respuesta=ex.getMessage();
+                                                                        System.out.println("Error: "+respuesta);
+
+                    }catch(ExcepcionMultiplicacion ex){
+                        respuesta=ex.getMessage();
+                                                System.out.println("Error: "+respuesta);
+
+                    }catch(ExcepcionResta ex){
+                        respuesta=ex.getMessage();
+                        System.out.println("Error: "+respuesta);
+
+                    }catch(ExcepcionSuma ex){
+                        respuesta=ex.getMessage();
+                                            System.out.println("Error: "+respuesta);
+
+                     }catch (InputMismatchException ex) {
+            System.out.println("Debe ingresar obligatoriamente un número entero.");
+        }
     }
  
     static void resta(int num1, int num2) throws ExcepcionResta{
